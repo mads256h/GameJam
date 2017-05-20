@@ -44,7 +44,7 @@ public class WaveSystem : MonoBehaviour {
                 Instantiate(enemy, spawningPos[Random.Range(0, spawningPos.Length - 1)].position, Quaternion.identity);
             }
 
-            /*
+            
             for (int i = 0; i < boss.Length; i++)
             {
                 if(boss[i] == waveIndex)
@@ -58,7 +58,14 @@ public class WaveSystem : MonoBehaviour {
                 }
             }
 
-    */
+            GameObject[] p = GameObject.FindGameObjectsWithTag("Player");
+
+
+            for(int i = 0; i < p.Length; i++)
+            {
+                p[i].GetComponent<Player>().GainHeath(100);
+            }
+
         }
 	}
 }

@@ -27,6 +27,8 @@ public class Enemy : Character {
 
     public bool randomPos = true;
 
+    private float damageTimer, damageCooldown = 0.25f;
+
 	[HideInInspector]
     public UnityEngine.AI.NavMeshAgent agent;
 
@@ -98,6 +100,16 @@ public class Enemy : Character {
             target = players[0];
         }
 
+        if(players[0].GetComponent<Player>().isDead)
+        {
+            target = players[1];
+        }
+
+        if (players[1].GetComponent<Player>().isDead)
+        {
+            target = players[0];
+        }
+
         if (!IsDead)
         {
             if(!takingDamage)
@@ -137,10 +149,25 @@ public class Enemy : Character {
         base.OnTriggerEnter(o);
         currentState.OnTriggerEnter(o);
 
-        if(o.tag == "Player")
+        if(o.tag == "Player" && !IsDead)
         {
             Debug.Log("Player took " + attackDamage + " damage");
             o.GetComponent<Player>().TakeDamage(attackDamage);
+        }
+    }
+
+    public void OnTriggerStay(Collider o)
+    {
+        damageTimer += Time.deltaTime;
+
+        if(damageTimer > damageCooldown)
+        {
+            if (o.tag == "Player")
+            {
+                Debug.Log("Player took " + attackDamage + " damage");
+                o.GetComponent<Player>().TakeDamage(attackDamage);
+                damageTimer = 0;
+            }
         }
     }
 
