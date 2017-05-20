@@ -146,20 +146,13 @@ public class Enemy : Character {
             if (IsDead)
             {
                 canMove = false;
-                Anim.SetTrigger("death");
-
-                GameObject z = Resources.Load("Zombie") as GameObject;
+                //Anim.SetTrigger("death");
 
 
-                for(int i = 0; i < 2; i++)
-                {
-                    GameObject zh = Instantiate(z) as GameObject;
-                    zh.transform.parent = GameObject.FindGameObjectWithTag("zombie_parent").transform;
-                }
                 
-                Destroy(gameObject, 30);
+                Destroy(gameObject,30);
+                GetComponentInChildren<SpriteRenderer>().color = new Color32(139, 61, 61, 255);
                 agent.enabled = false;
-                GetComponent<Rigidbody>().isKinematic = true;
                 Destroy(GetComponent<AudioSource>());
             }
             else
