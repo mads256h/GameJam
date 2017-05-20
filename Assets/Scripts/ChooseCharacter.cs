@@ -27,37 +27,79 @@ public class ChooseCharacter : MonoBehaviour
         InputModule.submitButton = "Submit1";
     }
 
+    private void Update()
+    {
+        print(Input.GetAxis("Horizontal1"));
+    }
+
     void Player2()
     {
         PlayerIndicator.text = "Player 2";
         InputModule.horizontalAxis = "Horizontal2";
         InputModule.verticalAxis = "Vertical2";
         InputModule.submitButton = "Submit2";
+        PlayerID = Consts.PlayerID.Two;
 
     }
 
-    void PressLongShot()
+    public void PressLongShot()
     {
         ButtonLongShot.enabled = false;
         if (PlayerID == Consts.PlayerID.One)
         {
-            
+            Player2();
+            Player.Player1Type = Consts.PlayerType.LongShot;
+            ButtonBomber.Select();
+        }
+        else
+        {
+            Player.Player2Type = Consts.PlayerType.LongShot;
         }
 
     }
 
-    void PressBomber()
+    public void PressBomber()
     {
-
+        ButtonBomber.enabled = false;
+        if (PlayerID == Consts.PlayerID.One)
+        {
+            Player2();
+            Player.Player1Type = Consts.PlayerType.Bomber;
+            ButtonLongShot.Select();
+        }
+        else
+        {
+            Player.Player2Type = Consts.PlayerType.Bomber;
+        }
     }
 
-    void PressKnight()
+    public void PressKnight()
     {
-
+        ButtonKnight.enabled = false;
+        if (PlayerID == Consts.PlayerID.One)
+        {
+            Player2();
+            Player.Player1Type = Consts.PlayerType.Knight;
+            ButtonLongShot.Select();
+        }
+        else
+        {
+            Player.Player2Type = Consts.PlayerType.Knight;
+        }
     }
 
-    void PressMage()
+    public void PressMage()
     {
-
+        ButtonMage.enabled = false;
+        if (PlayerID == Consts.PlayerID.One)
+        {
+            Player2();
+            Player.Player1Type = Consts.PlayerType.Mage;
+            ButtonLongShot.Select();
+        }
+        else
+        {
+            Player.Player2Type = Consts.PlayerType.Mage;
+        }
     }
 }
