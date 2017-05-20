@@ -5,12 +5,12 @@ using UnityEngine;
 public class FireSpread : MonoBehaviour {
 
     public bool OnFire;
+
     void Start ()
     {
 
 	}
 	
-
 	void Update ()
     {
         if (OnFire)
@@ -22,7 +22,7 @@ public class FireSpread : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.GetComponent<FireSpread>() != null)
+        if(OnFire == true && collision.collider.GetComponent<FireSpread>() != null)
         {
             collision.gameObject.GetComponent<FireSpread>().OnFire = true;
         }
