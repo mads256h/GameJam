@@ -7,6 +7,8 @@ public class WaveSystem : MonoBehaviour {
     [Header("Hvor mange enemies er der i hver wave")]
     public int[] enemies;
 
+    public GameObject[] diff_enemies;
+
     [Header("skriv hvilken wave bossen spawner i. bossen blive fundet efter indexet i denne array.")]
     public int[] boss;
 
@@ -37,10 +39,9 @@ public class WaveSystem : MonoBehaviour {
             if (waveIndex > enemies.Length - 1)
                 waveIndex = enemies.Length - 1;
 
-            GameObject enemy = Resources.Load("enemy") as GameObject;
-
             for (int i = 0; i < enemies[waveIndex]; i++)
             {
+                GameObject enemy = diff_enemies[Random.Range(0, diff_enemies.Length - 1)];
                 Instantiate(enemy, spawningPos[Random.Range(0, spawningPos.Length - 1)].position, Quaternion.identity);
             }
 
