@@ -36,13 +36,22 @@ public class Player : MonoBehaviour {
         {
             isDead = true;
         }
+        
+        if(Health < 0)
+        {
+            Health = 0;
+        }
 	}
 
     public void GainHeath (float healthToGain) //Få liv
     {
+        isDead = false;
         Health += healthToGain;
 
         if (Health > 100)
             Health = 100;
+           
+
+
     }
 }
