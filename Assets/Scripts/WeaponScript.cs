@@ -16,6 +16,8 @@ public class WeaponScript : MonoBehaviour {
 
     private float timer = 0f;
 
+    public bool testGun;
+
     void Start()
     {
         Player = GetComponent<Transform>();
@@ -36,8 +38,9 @@ public class WeaponScript : MonoBehaviour {
                 break;
         }
 
-        if (shoot && timer >= Cooldown)
+        if (shoot && timer >= Cooldown || testGun)
         {
+            testGun = false;
             muzzleFlash.Play("MuzzleFlash");
             Vector3 rotation = Player.rotation.eulerAngles;
             rotation.y -= 90f;
