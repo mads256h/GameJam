@@ -18,21 +18,25 @@ public class Ultimate : MonoBehaviour {
 	}
     void ActivateUltimate () //Aktivere ult og checker hvilken type spilleren er.
     {
-        if(player.HeroType == 1)
-        {
-            print("Aktiverede ultimate for spiller " + player.PlayerID + ". Han er type " + player.HeroType);
-        }
-        if (player.HeroType == 2)
-        {
-            print("Aktiverede ultimate for spiller " + player.PlayerID + ". Han er type " + player.HeroType);
-        }
-        if (player.HeroType == 3)
-        {
-            print("Aktiverede ultimate for spiller " + player.PlayerID + ". Han er type " + player.HeroType);
-        }
-        if (player.HeroType == 4)
-        {
-            print("Aktiverede ultimate for spiller " + player.PlayerID + ". Han er type " + player.HeroType);
-        }
+    }
+
+    void UltLongShot()
+    {
+
+    }
+
+    void UltBomber()
+    {
+
+    }
+
+    void UltKnight()
+    {
+
+    }
+
+    void UltMage()
+    {
+
     }
 }

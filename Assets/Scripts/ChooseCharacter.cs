@@ -27,11 +27,6 @@ public class ChooseCharacter : MonoBehaviour
         InputModule.submitButton = "Submit1";
     }
 
-    private void Update()
-    {
-        print(Input.GetAxis("Horizontal1"));
-    }
-
     void Player2()
     {
         PlayerIndicator.text = "Player 2";

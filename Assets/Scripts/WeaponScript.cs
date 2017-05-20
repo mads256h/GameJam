@@ -8,9 +8,13 @@ public class WeaponScript : MonoBehaviour {
 
     public Bullet bullet;
 
+    public GameObject Bomb;
+
+    public Vector3 BombStrength = new Vector3(0, 0, 1f);
+
     public Animator muzzleFlash;
 
-    public Transform Player;
+    public Transform player;
 
     private Player playerScript;
 
@@ -22,7 +26,7 @@ public class WeaponScript : MonoBehaviour {
 
     void Start()
     {
-        Player = GetComponent<Transform>();
+        player = GetComponent<Transform>();
         playerScript = GetComponent<Player>();
     }
 
@@ -44,14 +48,24 @@ public class WeaponScript : MonoBehaviour {
                 shoot = Input.GetButton("JFire2");
                 break;
         }
-
-        if (shoot && timer >= Cooldown || testGun)
+        if (shoot && timer >= Cooldown && PlayerID == Consts.PlayerID.One)
         {
-            testGun = false;
-            muzzleFlash.Play("MuzzleFlash");
-            Vector3 rotation = Player.rotation.eulerAngles;
-            rotation.y -= 90f;
-            Instantiate(bullet, Player.position, Quaternion.Euler(rotation));
+            switch (Player.Player1Type)
+            {
+                case Consts.PlayerType.LongShot:
+                    muzzleFlash.Play("MuzzleFlash");
+                    Vector3 rotation = player.rotation.eulerAngles;
+                    rotation.y -= 90f;
+                    Instantiate(bullet, player.position, Quaternion.Euler(rotation));
+                    break;
+                case Consts.PlayerType.Bomber:
+                    ((GameObject)Instantiate(Bomb, player.position, player.rotation)).GetComponent<Rigidbody>().AddForce(BombStrength, ForceMode.Impulse);
+                    break;
+                case Consts.PlayerType.Knight:
+                    break;
+                case Consts.PlayerType.Mage:
+                    break;
+            }
             timer = 0f;
         }
 	}
