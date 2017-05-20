@@ -7,7 +7,7 @@ public class FadeObject : MonoBehaviour {
     public string Tag = "Player";
     public float FadeOutAlpha = 0.1f;
 
-    private SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
 
 	// Use this for initialization
 	void Start () {
