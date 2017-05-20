@@ -17,7 +17,23 @@ public class Player : MonoBehaviour {
     public float lerpSpeed; //Hvor hurtigt healthbar er "animeret"
     public Image HealthBar; //Healthbar. Skal være sat til filled horizontal.
 
+    public Sprite bombMan;
+
+    public Sprite Mage;
+
     public bool isDead;
+    private void Start()
+    {
+        if (HeroType == 2)
+        {
+            GetComponent<SpriteRenderer>().sprite = bombMan;
+        }
+        else if (HeroType == 4)
+        {
+            GetComponent<SpriteRenderer>().sprite = Mage;
+        }
+    }
+
 
     void Update()
     {
