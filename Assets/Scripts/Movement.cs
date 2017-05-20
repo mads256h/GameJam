@@ -18,16 +18,12 @@ public class Movement : MonoBehaviour {
         if(player == 1)
         {
             input = new Vector2(Input.GetAxisRaw("Horizontal1"), Input.GetAxisRaw("Vertical1"));
-            Debug.Log("lajshdkjlasdhkjsa 1");
         }
         else
         {
             input = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2"));
-            Debug.Log("lajshdkjlasdhkjsa 2");
         }
             
-
-        Debug.Log(input);
 
         transform.Translate(input * speed * Time.deltaTime);
 	}
