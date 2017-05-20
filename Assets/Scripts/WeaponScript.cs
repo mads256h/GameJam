@@ -12,6 +12,8 @@ public class WeaponScript : MonoBehaviour {
 
     public Transform Player;
 
+    private Player playerScript;
+
     public float Cooldown = 0.5f;
 
     private float timer = 0f;
@@ -21,10 +23,15 @@ public class WeaponScript : MonoBehaviour {
     void Start()
     {
         Player = GetComponent<Transform>();
+        playerScript = GetComponent<Player>();
     }
 
     void Update ()
     {
+
+        if (playerScript.isDead)
+            return;
+
         timer += Time.deltaTime;
         bool shoot = false;
         switch (PlayerID)

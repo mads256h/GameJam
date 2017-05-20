@@ -23,7 +23,7 @@ public class Enemy : Character {
     [SerializeField]
     private float meleeRange = 2;
 
-    public float meleeCooldown = 2;
+    public float meleeCooldown = 2, attackDamage;
 
     public bool randomPos = true;
 
@@ -88,6 +88,7 @@ public class Enemy : Character {
         float disToPlayer1 = Vector3.Distance(transform.position, players[0].transform.position);
         float disToPlayer2 = Vector3.Distance(transform.position, players[1].transform.position);
 
+
         if (disToPlayer1 > disToPlayer2)
         {
             target = players[1];
@@ -135,6 +136,12 @@ public class Enemy : Character {
     {
         base.OnTriggerEnter(o);
         currentState.OnTriggerEnter(o);
+
+        if(o.tag == "Player")
+        {
+            Debug.Log("Player took " + attackDamage + " damage");
+            o.GetComponent<Player>().TakeDamage(attackDamage);
+        }
     }
 
     public override IEnumerator TakeDamage(int amount)
