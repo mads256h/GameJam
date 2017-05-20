@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
 
     private BoxCollider boxCollider;
 
-    public int damage = 100;
+    public int damage = 5;
 
     void Start()
     {
@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector3(Speed * Time.deltaTime, 0f, 0f));
+        transform.Translate(new Vector3( 0f, -(Speed * Time.deltaTime), 0f));
         timer += Time.deltaTime;
         if (timer >= IgnoreTime)
             boxCollider.enabled = true;

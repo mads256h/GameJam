@@ -78,6 +78,8 @@ public class Enemy : Character {
 
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         ChangeState(new HuntState());
+
+        WaveSystem.currentEnemies++;
     }
 
     void Update()
@@ -149,7 +151,7 @@ public class Enemy : Character {
                 //Anim.SetTrigger("death");
 
 
-                
+                WaveSystem.currentEnemies--;
                 Destroy(gameObject,30);
                 GetComponentInChildren<SpriteRenderer>().color = new Color32(139, 61, 61, 255);
                 agent.enabled = false;
