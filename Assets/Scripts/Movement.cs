@@ -9,10 +9,19 @@ public class Movement : MonoBehaviour {
 
     public Consts.PlayerID playerID;
 
+    private Player player;
+
+    void Start()
+    {
+        player = GetComponent<Player>();
+    }
 
     void Update ()
     {
         Vector3 input = Vector3.zero;
+
+        if (player.isDead)
+            return;
 
 
         switch (playerID)

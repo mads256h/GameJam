@@ -17,6 +17,8 @@ public class Player : MonoBehaviour {
     public float lerpSpeed; //Hvor hurtigt healthbar er "animeret"
     public Image HealthBar; //Healthbar. Skal være sat til filled horizontal.
 
+    public bool isDead;
+
     void Update()
     {
         HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, Health / 100, Time.deltaTime * lerpSpeed); //"Animere" healthbaren
@@ -24,15 +26,23 @@ public class Player : MonoBehaviour {
 
     public void AddScore (float scoreToAdd) //Tilføj point
     {
-        Score = Score + scoreToAdd; 
+        Score += scoreToAdd; 
     } 
 
     public void TakeDamage (float damageToLose) { //Mist liv
-        Health = Health - damageToLose;
+        Health -= damageToLose;
+
+        if(Health <= 0)
+        {
+            isDead = true;
+        }
 	}
 
     public void GainHeath (float healthToGain) //Få liv
     {
-        Health = Health + healthToGain;
+        Health += healthToGain;
+
+        if (Health > 100)
+            Health = 100;
     }
 }
