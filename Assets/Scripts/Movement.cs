@@ -7,23 +7,24 @@ public class Movement : MonoBehaviour {
     //speed = 5 er en passende hastighed.
     public float speed = 5;
 
-    [Range(1,2)]
-    public int player = 1;
+    public Consts.PlayerID playerID;
 
 
-	void Update ()
+    void Update ()
     {
         Vector3 input = Vector3.zero;
 
-        if(player == 1)
-        {
-            input = new Vector3(Input.GetAxisRaw("Horizontal1"), 0, Input.GetAxisRaw("Vertical1"));
-        }
-        else
-        {
-            input = new Vector3(Input.GetAxisRaw("Horizontal2"),0, Input.GetAxisRaw("Vertical2"));
-        }
 
+        switch (playerID)
+        {
+            case Consts.PlayerID.One:
+                input = new Vector3(Input.GetAxisRaw("Horizontal1"), 0, Input.GetAxisRaw("Vertical1"));
+                break;
+            case Consts.PlayerID.Two:
+                input = new Vector3(Input.GetAxisRaw("Horizontal2"), 0, Input.GetAxisRaw("Vertical2"));
+                break;
+
+        }
 
         input.Normalize();
 
