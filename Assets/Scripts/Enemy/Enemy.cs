@@ -154,6 +154,7 @@ public class Enemy : Character {
                 WaveSystem.currentEnemies--;
                 Destroy(gameObject,30);
                 GetComponentInChildren<SpriteRenderer>().color = new Color32(139, 61, 61, 255);
+                GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
                 agent.enabled = false;
                 Destroy(GetComponent<AudioSource>());
             }
