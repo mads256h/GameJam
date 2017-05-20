@@ -17,13 +17,15 @@ public class Movement : MonoBehaviour {
 
         if(player == 1)
         {
-            input = new Vector3(Input.GetAxisRaw("Horizontal1"), Input.GetAxisRaw("Vertical1"),0);
+            input = new Vector3(Input.GetAxisRaw("Horizontal1"), 0, Input.GetAxisRaw("Vertical1"));
         }
         else
         {
-            input = new Vector3(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2"),0);
+            input = new Vector3(Input.GetAxisRaw("Horizontal2"),0, Input.GetAxisRaw("Vertical2"));
         }
-            
+
+
+        input.Normalize();
 
         transform.position += (input * speed * Time.deltaTime);
 	}
