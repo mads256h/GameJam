@@ -1,0 +1,38 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Ultimate : MonoBehaviour {
+
+    Player player; //Refernce til player scriptet som holder styr på liv id type og score.
+
+	void Start () {
+        player = GetComponent<Player>();	
+	}
+	
+	void Update () {
+		if(Input.GetButtonDown("Ultimate" + player.PlayerID.ToString())) //Checker om spilleren aktivere ultimate, og hvem der aktivere det.
+        {
+            ActivateUltimate();
+        }
+	}
+    void ActivateUltimate () //Aktivere ult og checker hvilken type spilleren er.
+    {
+        if(player.HeroType == 1)
+        {
+            print("Aktiverede ultimate for spiller " + player.PlayerID + ". Han er type " + player.HeroType);
+        }
+        if (player.HeroType == 2)
+        {
+            print("Aktiverede ultimate for spiller " + player.PlayerID + ". Han er type " + player.HeroType);
+        }
+        if (player.HeroType == 3)
+        {
+            print("Aktiverede ultimate for spiller " + player.PlayerID + ". Han er type " + player.HeroType);
+        }
+        if (player.HeroType == 4)
+        {
+            print("Aktiverede ultimate for spiller " + player.PlayerID + ". Han er type " + player.HeroType);
+        }
+    }
+}
