@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     public HeroClass[] heros;
 
     public GameObject cam1, cam2;
+
+    public Image healthbar1, healthbar2;
 
 
     void Start()
@@ -17,6 +20,7 @@ public class GameManager : MonoBehaviour {
             {
                 GameObject g = (GameObject) Instantiate(heros[i].obj, new Vector3(276.0555f,0, 230.8f), Quaternion.identity);
                 g.GetComponent<CameraScript>().camera = cam1;
+                g.GetComponent<Player>().HealthBar = healthbar1;
             }
 
             if (Player.Player2Type == heros[i].type)
@@ -27,6 +31,8 @@ public class GameManager : MonoBehaviour {
                 g.GetComponent<PlayerRotation>().PlayerID = Consts.PlayerID.Two;
                 g.GetComponent<WeaponScript>().PlayerID = Consts.PlayerID.Two;
                 g.GetComponent<Player>().PlayerID = Consts.PlayerID.Two;
+
+                g.GetComponent<Player>().HealthBar = healthbar2;
 
                 g.GetComponent<CameraScript>().camera = cam2;
             }

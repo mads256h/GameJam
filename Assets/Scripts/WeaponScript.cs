@@ -13,11 +13,10 @@ public class WeaponScript : MonoBehaviour
 
     public Vector3 BombStrength = new Vector3(0, 0, 1f);
 
-    public CapsuleCollider meeleRange;
+    public CapsuleCollider meleeRange;
 
     public int meeleDamage = 100;
 
-    public Sprite Magic;
 
     public Animator muzzleFlash;
 
@@ -34,7 +33,6 @@ public class WeaponScript : MonoBehaviour
         player = GetComponent<Transform>();
         playerScript = GetComponent<Player>();
 
-        Player.Player1Type = Consts.PlayerType.Knight;
     }
 
     void Update()
@@ -70,13 +68,13 @@ public class WeaponScript : MonoBehaviour
                     g.GetComponent<Rigidbody>().AddRelativeForce(BombStrength, ForceMode.Impulse);
                     break;
                 case Consts.PlayerType.Knight:
-                    meeleRange.enabled = true;
+                    Debug.Log("ljashdkljashdk");
+                    meleeRange.enabled = true;
                     break;
                 case Consts.PlayerType.Mage:
                     Vector3 magerotation = player.rotation.eulerAngles;
                     magerotation.y -= 90f;
                     Bullet b = Instantiate(bullet, player.position, Quaternion.Euler(magerotation));
-                    b.GetComponent<SpriteRenderer>().sprite = Magic;
                     break;
             }
             timer = 0f;
@@ -97,13 +95,12 @@ public class WeaponScript : MonoBehaviour
                     g.GetComponent<Rigidbody>().AddRelativeForce(BombStrength, ForceMode.Impulse);
                     break;
                 case Consts.PlayerType.Knight:
-                    meeleRange.enabled = true;
+                    meleeRange.enabled = true;
                     break;
                 case Consts.PlayerType.Mage:
                     Vector3 magerotation = player.rotation.eulerAngles;
                     magerotation.y -= 90f;
                     Bullet b = Instantiate(bullet, player.position, Quaternion.Euler(magerotation));
-                    b.GetComponent<SpriteRenderer>().sprite = Magic;
                     break;
             }
             timer = 0f;
@@ -116,7 +113,9 @@ public class WeaponScript : MonoBehaviour
         if (other.tag == "Enemy")
         {
             other.gameObject.GetComponent<Enemy>().StartCoroutine(other.gameObject.GetComponent<Enemy>().TakeDamage(meeleDamage));
-            meeleRange.enabled = false;
+
+            if(meleeRange != null)
+                meleeRange.enabled = false;
         }
 
     }
