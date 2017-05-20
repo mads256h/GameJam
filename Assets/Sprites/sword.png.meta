@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: dd5c8135986510f4087feacb0f7fa85c
-timeCreated: 1495318042
+guid: e429f5627a5fd0248a6e1cb81f08e9c0
+timeCreated: 1495316485
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -27,7 +27,7 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -1
     wrapMode: 1
@@ -37,9 +37,9 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  alignment: 9
+  spritePivot: {x: 0.50867087, y: 0.5545027}
+  spriteBorder: {x: 53, y: 5, z: 51, w: 3}
   spritePixelsToUnits: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -51,33 +51,17 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Standalone
-    maxTextureSize: 128
+    maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: Android
-    maxTextureSize: 128
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: WebGL
-    maxTextureSize: 128
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -85,7 +69,16 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline: []
+    outline:
+    - - {x: 14, y: 16}
+      - {x: 3, y: 16}
+      - {x: -9, y: 8}
+      - {x: -14, y: 3}
+      - {x: -14, y: -14}
+      - {x: -2, y: -14}
+      - {x: 7, y: -9}
+      - {x: 16, y: 5}
+      - {x: 16, y: 13}
   spritePackingTag: 
   userData: 
   assetBundleName: 
