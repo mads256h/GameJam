@@ -28,6 +28,8 @@ public class WeaponScript : MonoBehaviour {
     {
         player = GetComponent<Transform>();
         playerScript = GetComponent<Player>();
+
+        Player.Player1Type = Consts.PlayerType.Bomber;
     }
 
     void Update ()
@@ -59,7 +61,8 @@ public class WeaponScript : MonoBehaviour {
                     Instantiate(bullet, player.position, Quaternion.Euler(rotation));
                     break;
                 case Consts.PlayerType.Bomber:
-                    ((GameObject)Instantiate(Bomb, player.position, player.rotation)).GetComponent<Rigidbody>().AddForce(BombStrength, ForceMode.Impulse);
+                    GameObject g = (GameObject)Instantiate(Bomb, player.position, player.rotation);
+                    g.GetComponent<Rigidbody>().AddForce(BombStrength, ForceMode.Impulse);
                     break;
                 case Consts.PlayerType.Knight:
                     break;
