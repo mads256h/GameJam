@@ -12,6 +12,10 @@ public class WeaponScript : MonoBehaviour {
 
     public Vector3 BombStrength = new Vector3(0, 0, 1f);
 
+    public CapsuleCollider meeleRange;
+
+    public int meeleDamage = 100;
+
     public Animator muzzleFlash;
 
     public Transform player;
@@ -21,8 +25,6 @@ public class WeaponScript : MonoBehaviour {
     public float Cooldown = 0.5f;
 
     private float timer = 0f;
-
-    public bool testGun;
 
     void Start()
     {
@@ -59,9 +61,11 @@ public class WeaponScript : MonoBehaviour {
                     Instantiate(bullet, player.position, Quaternion.Euler(rotation));
                     break;
                 case Consts.PlayerType.Bomber:
-                    ((GameObject)Instantiate(Bomb, player.position, player.rotation)).GetComponent<Rigidbody>().AddForce(BombStrength, ForceMode.Impulse);
+                    GameObject g = (GameObject)Instantiate(Bomb, player.position, player.rotation);
+                    g.GetComponent<Rigidbody>().AddRelativeForce(BombStrength, ForceMode.Impulse);
                     break;
                 case Consts.PlayerType.Knight:
+                    meeleRange.enabled = true;
                     break;
                 case Consts.PlayerType.Mage:
                     break;
@@ -69,4 +73,13 @@ public class WeaponScript : MonoBehaviour {
             timer = 0f;
         }
 	}
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<Enemy>().StartCoroutine(other.gameObject.GetComponent<Enemy>().TakeDamage(meeleDamage));
+        }
+    }
 }
