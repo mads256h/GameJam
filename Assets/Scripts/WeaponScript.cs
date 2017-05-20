@@ -73,6 +73,10 @@ public class WeaponScript : MonoBehaviour
                     meeleRange.enabled = true;
                     break;
                 case Consts.PlayerType.Mage:
+                    Vector3 magerotation = player.rotation.eulerAngles;
+                    magerotation.y -= 90f;
+                    Bullet b = Instantiate(bullet, player.position, Quaternion.Euler(magerotation));
+                    b.GetComponent<SpriteRenderer>().sprite = Magic;
                     break;
             }
             timer = 0f;
