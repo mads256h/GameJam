@@ -31,7 +31,7 @@ public class PlayerRotation : MonoBehaviour {
         if (angle == 0f) //If angle is zero there is no need to update
             return;
 
-        transform.rotation = Quaternion.Euler(0f, 0f, (angle + 90f) * -1);
+        transform.rotation = Quaternion.Euler(90f, (angle + 90f), 0f);
 
 	}
 }

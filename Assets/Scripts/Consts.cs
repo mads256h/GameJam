@@ -10,4 +10,18 @@ public class Consts : MonoBehaviour
         One = 1,
         Two = 2,
     }
+
+    public enum EnemyType
+    {
+        Slime,
+        
+    }
+
+    public enum PlayerType
+    {
+        LongShot,
+        Bomber,
+        Knight,
+        Mage,
+    }
 }
