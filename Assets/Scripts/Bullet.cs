@@ -15,6 +15,8 @@ public class Bullet : MonoBehaviour
 
     private BoxCollider boxCollider;
 
+    public int damage = 100;
+
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
@@ -35,8 +37,11 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
-        if(c.gameObject.GetComponent<Enemy>())
+        if(c.tag == "Enemy")
         {
+            Enemy e = c.GetComponent<Enemy>();
+
+            e.StartCoroutine(e.TakeDamage(damage));
 
             Destroy(gameObject);
         }
