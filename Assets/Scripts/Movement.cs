@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour {
     //speed = 5 er en passende hastighed.
     public float speed = 5;
 
+    [Range(1,2)]
     public int player = 0;
 
 	// Use this for initialization
