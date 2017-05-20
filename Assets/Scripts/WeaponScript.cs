@@ -62,7 +62,7 @@ public class WeaponScript : MonoBehaviour {
                     break;
                 case Consts.PlayerType.Bomber:
                     GameObject g = (GameObject)Instantiate(Bomb, player.position, player.rotation);
-                    g.GetComponent<Rigidbody>().AddForce(BombStrength, ForceMode.Impulse);
+                    g.GetComponent<Rigidbody>().AddRelativeForce(BombStrength, ForceMode.Impulse);
                     break;
                 case Consts.PlayerType.Knight:
                     break;
