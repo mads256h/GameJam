@@ -53,7 +53,9 @@ public class BombObject : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            other.gameObject.GetComponent<Enemy>().TakeDamage(Damage);
+            other.GetComponent<Enemy>().StartCoroutine(other.gameObject.GetComponent<Enemy>().TakeDamage(Damage));
         }
+
+        Destroy(gameObject);
     }
 }
