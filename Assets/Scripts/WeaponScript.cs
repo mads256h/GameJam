@@ -6,17 +6,26 @@ public class WeaponScript : MonoBehaviour {
 
     public GameObject Bullet;
 
-	void Start ()
-    {
-		
-	}
-	
+    public Transform Player;
 
-	void Update ()
+    public float Cooldown = 0.5f;
+
+    private float timer = 0f;
+
+    void Start()
     {
-        if (Input.GetButton("joystick button 5")||Input.GetMouseButtonDown(1))
+        Player = GetComponent<Transform>();
+    }
+
+    void Update ()
+    {
+        timer += Time.deltaTime;
+        if (Input.GetButton("Fire1") && timer >= Cooldown)
         {
-            GameObject Projectile = Instantiate(Bullet, transform);
+            Vector3 rotation = Player.rotation.eulerAngles;
+            rotation.y -= 90f;
+            Instantiate(Bullet, Player.position, Quaternion.Euler(rotation));
+            timer = 0f;
         }
 	}
 }
