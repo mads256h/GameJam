@@ -8,6 +8,8 @@ public class WeaponScript : MonoBehaviour {
 
     public Bullet bullet;
 
+    public Animator muzzleFlash;
+
     public Transform Player;
 
     public float Cooldown = 0.5f;
@@ -36,6 +38,7 @@ public class WeaponScript : MonoBehaviour {
 
         if (shoot && timer >= Cooldown)
         {
+            muzzleFlash.Play("MuzzleFlash");
             Vector3 rotation = Player.rotation.eulerAngles;
             rotation.y -= 90f;
             Instantiate(bullet, Player.position, Quaternion.Euler(rotation));
