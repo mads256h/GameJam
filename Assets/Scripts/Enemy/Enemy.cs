@@ -13,6 +13,7 @@ using System.Collections;
 using System;
 
 
+[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class Enemy : Character {
 
 
