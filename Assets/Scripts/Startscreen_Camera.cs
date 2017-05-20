@@ -11,7 +11,7 @@ public class Startscreen_Camera : MonoBehaviour {
     public void StartGame()
     {
         GetComponent<Animator>().enabled = true;
-        button.SetActive(false);
+        button.GetComponent<Animator>().Play("Exit");
     }
 
 	public void LoadGame()
