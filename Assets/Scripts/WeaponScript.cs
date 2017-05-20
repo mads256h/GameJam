@@ -28,8 +28,6 @@ public class WeaponScript : MonoBehaviour {
     {
         player = GetComponent<Transform>();
         playerScript = GetComponent<Player>();
-
-        Player.Player1Type = Consts.PlayerType.Bomber;
     }
 
     void Update ()

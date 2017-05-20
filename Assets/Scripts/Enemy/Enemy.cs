@@ -160,6 +160,10 @@ public class Enemy : Character {
 
     public void OnTriggerStay(Collider o)
     {
+
+        if (IsDead)
+            return;
+
         damageTimer += Time.deltaTime;
 
         if(damageTimer > damageCooldown)
