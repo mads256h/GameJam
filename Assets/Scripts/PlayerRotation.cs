@@ -11,14 +11,21 @@ public class PlayerRotation : MonoBehaviour {
 
     private new Transform transform;
 
+    private Player player;
+
 
 	// Use this for initialization
 	void Start () {
         transform = GetComponent<Transform>();
+        player = GetComponent<Player>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (player.isDead)
+            return;
+
         float angle = 0;
 
         switch (PlayerID)
