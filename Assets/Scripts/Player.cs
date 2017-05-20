@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
-    public static Consts.PlayerType Player1Type;
-    public static Consts.PlayerType Player2Type;
+    public static Consts.PlayerType Player1Type = Consts.PlayerType.Mage;
+    public static Consts.PlayerType Player2Type = Consts.PlayerType.Bomber;
 
     public Consts.PlayerID PlayerID; //Om det er spiller 1 eller 2
     public int HeroType; //Hvilken type hero det er Sniper = 1 Bombman = 2 Melee dude = 3 Mage = 4
