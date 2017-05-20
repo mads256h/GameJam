@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour {
 
-    public GameObject Bullet;
-    public float FireRate = 1f;
-    private float timer;
-    private int bulletCounter;
+    public Bullet bullet;
 
-    void Start ()
-    {
-		
-	}
-	
+    public Transform Player;
 
-	void Update ()
+    public float Cooldown = 0.5f;
+
+    private float timer = 0f;
+
+    void Start()
     {
-        //If Fire button is pressed and timer is > fire rate -- Shoot
-        timer += Time.deltaTime;
-        if (Input.GetButton("Fire1") && timer > FireRate)
+        Player = GetComponent<Transform>();
+    }
+
+    void Update ()
+    {
+        if (Input.GetButton("Fire1") && timer >= Cooldown)
         {
-            GameObject Projectile = Instantiate(Bullet, transform);
-            Projectile.name = "Projectile " + bulletCounter;
-            bulletCounter++;
-            timer = 0;
+            Vector3 rotation = Player.rotation.eulerAngles;
+            rotation.y -= 90f;
+            Instantiate(bullet, Player.position, Quaternion.Euler(rotation));
+            timer = 0f;
         }
 	}
 }
