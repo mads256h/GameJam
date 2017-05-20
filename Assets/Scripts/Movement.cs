@@ -13,18 +13,18 @@ public class Movement : MonoBehaviour {
 
 	void Update ()
     {
-        Vector2 input = Vector2.zero;
+        Vector3 input = Vector3.zero;
 
         if(player == 1)
         {
-            input = new Vector2(Input.GetAxisRaw("Horizontal1"), Input.GetAxisRaw("Vertical1"));
+            input = new Vector3(Input.GetAxisRaw("Horizontal1"), Input.GetAxisRaw("Vertical1"),0);
         }
         else
         {
-            input = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2"));
+            input = new Vector3(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2"),0);
         }
             
 
-        transform.Translate(input * speed * Time.deltaTime);
+        transform.position += (input * speed * Time.deltaTime);
 	}
 }
