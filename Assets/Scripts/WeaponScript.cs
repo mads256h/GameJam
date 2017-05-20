@@ -30,6 +30,8 @@ public class WeaponScript : MonoBehaviour {
     {
         player = GetComponent<Transform>();
         playerScript = GetComponent<Player>();
+
+        Player.Player1Type = Consts.PlayerType.Knight;
     }
 
     void Update ()
@@ -80,6 +82,15 @@ public class WeaponScript : MonoBehaviour {
         if (other.tag == "Enemy")
         {
             other.gameObject.GetComponent<Enemy>().StartCoroutine(other.gameObject.GetComponent<Enemy>().TakeDamage(meeleDamage));
+            
+            if(meeleRange != null)
+            {
+                meeleRange.enabled = false;
+            }
+            else
+            {
+                Debug.Log("lkasjdlkasjd");
+            }
         }
     }
 }
