@@ -6,6 +6,9 @@ public class PlayerRotation : MonoBehaviour {
 
     
     public Consts.PlayerID PlayerID = Consts.PlayerID.One;
+
+    public float correctionAngle = 0;
+
     private new Transform transform;
 
 
@@ -31,7 +34,7 @@ public class PlayerRotation : MonoBehaviour {
         if (angle == 0f) //If angle is zero there is no need to update
             return;
 
-        transform.rotation = Quaternion.Euler(90f, (angle + 90f), 0f);
+        transform.rotation = Quaternion.Euler(90f, angle + correctionAngle, 0f);
 
 	}
 }
