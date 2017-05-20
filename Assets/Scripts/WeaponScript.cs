@@ -5,8 +5,11 @@ using UnityEngine;
 public class WeaponScript : MonoBehaviour {
 
     public GameObject Bullet;
+    public float FireRate = 1f;
+    private float timer;
+    private int bulletCounter;
 
-	void Start ()
+    void Start ()
     {
 		
 	}
@@ -14,9 +17,14 @@ public class WeaponScript : MonoBehaviour {
 
 	void Update ()
     {
-        if (Input.GetButton("joystick button 5")||Input.GetMouseButtonDown(1))
+        //If Fire button is pressed and timer is > fire rate -- Shoot
+        timer += Time.deltaTime;
+        if (Input.GetButton("Fire1") && timer > FireRate)
         {
             GameObject Projectile = Instantiate(Bullet, transform);
+            Projectile.name = "Projectile " + bulletCounter;
+            bulletCounter++;
+            timer = 0;
         }
 	}
 }
