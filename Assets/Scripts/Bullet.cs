@@ -43,9 +43,14 @@ public class Bullet : MonoBehaviour
             Enemy e = c.GetComponent<Enemy>();
 
             e.StartCoroutine(e.TakeDamage(damage));
-            GameObject Particles = Instantiate(ps, transform.position, ps.transform.rotation);
-            Destroy(Particles, 2);
-            Destroy(gameObject);
+
+            if(ps != null)
+            {
+                GameObject Particles = Instantiate(ps, transform.position, ps.transform.rotation);
+                Destroy(Particles, 2);
+                Destroy(gameObject);
+            }
+            
         }
     }
 }

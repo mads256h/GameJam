@@ -16,7 +16,7 @@ public class Startscreen_Camera : MonoBehaviour {
 
 	public void LoadGame()
     {
-        SceneManager.LoadScene("test - julius");
+        SceneManager.LoadScene("1");
     }
 
     public void StartFade()

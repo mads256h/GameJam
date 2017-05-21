@@ -48,7 +48,7 @@ public class ChooseCharacter : MonoBehaviour
         else
         {
             Player.Player2Type = Consts.PlayerType.LongShot;
-            Application.LoadLevel(1);
+            Application.LoadLevel(2);
         }
 
     }
@@ -66,7 +66,7 @@ public class ChooseCharacter : MonoBehaviour
         else
         {
             Player.Player2Type = Consts.PlayerType.Bomber;
-            Application.LoadLevel(1);
+            Application.LoadLevel(2);
         }
     }
 
@@ -82,7 +82,7 @@ public class ChooseCharacter : MonoBehaviour
         else
         {
             Player.Player2Type = Consts.PlayerType.Knight;
-            Application.LoadLevel(1);
+            Application.LoadLevel(2);
         }
     }
 
@@ -98,7 +98,7 @@ public class ChooseCharacter : MonoBehaviour
         else
         {
             Player.Player2Type = Consts.PlayerType.Mage;
-            Application.LoadLevel(1);
+            Application.LoadLevel(2);
         }
     }
 }
