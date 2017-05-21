@@ -9,6 +9,10 @@ public class WeaponScript : MonoBehaviour
 
     public Bullet bullet;
 
+    public AudioClip bulletSound;
+
+    public float volume = 0.75f;
+
     public GameObject Bomb;
 
     public Vector3 BombStrength = new Vector3(0, 0, 1f);
@@ -62,6 +66,7 @@ public class WeaponScript : MonoBehaviour
                     Vector3 rotation = player.rotation.eulerAngles;
                     rotation.y -= 90f;
                     Instantiate(bullet, player.position, Quaternion.Euler(rotation));
+                    AudioManager.PlaySound(transform.position, bulletSound, volume);
                     break;
                 case Consts.PlayerType.Bomber:
                     GameObject g = (GameObject)Instantiate(Bomb, player.position, player.rotation);
@@ -89,6 +94,7 @@ public class WeaponScript : MonoBehaviour
                     Vector3 rotation = player.rotation.eulerAngles;
                     rotation.y -= 90f;
                     Instantiate(bullet, player.position, Quaternion.Euler(rotation));
+                    AudioManager.PlaySound(transform.position, bulletSound, volume);
                     break;
                 case Consts.PlayerType.Bomber:
                     GameObject g = (GameObject)Instantiate(Bomb, player.position, player.rotation);
