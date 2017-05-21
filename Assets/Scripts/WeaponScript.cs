@@ -19,7 +19,9 @@ public class WeaponScript : MonoBehaviour
 
     public CapsuleCollider meleeRange;
 
-    public int meeleDamage = 100;
+    public int meeleDamage = 50;
+
+    public int damange;
 
     public AudioClip meleeSound;
 
@@ -77,7 +79,8 @@ public class WeaponScript : MonoBehaviour
                     Vector3 rotation = player.rotation.eulerAngles;
                     AudioManager.PlaySound(transform.position, clip);
                     rotation.y -= 90f;
-                    Instantiate(bullet, player.position, Quaternion.Euler(rotation));
+                    Bullet bu = Instantiate(bullet, player.position, Quaternion.Euler(rotation)) as Bullet;
+                    bu.damage = damange;
                     AudioManager.PlaySound(transform.position, bulletSound, bulletVolume);
                     break;
                 case Consts.PlayerType.Bomber:
@@ -92,6 +95,7 @@ public class WeaponScript : MonoBehaviour
                     Vector3 magerotation = player.rotation.eulerAngles;
                     magerotation.y -= 90f;
                     Bullet b = Instantiate(bullet, new Vector3(player.position.x, 11, player.position.z), Quaternion.Euler(magerotation));
+                    b.damage = damange;
                     AudioManager.PlaySound(transform.position, clip);
                     break;
             }

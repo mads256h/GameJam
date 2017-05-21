@@ -17,6 +17,11 @@ public class PowerUp : MonoBehaviour {
 	void Start () {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        int rnd = Random.Range(0, 4);
+
+        PowerUpType = (Consts.PowerUpType)rnd;
+
+
         switch (PowerUpType)
         {
             case Consts.PowerUpType.Health:

@@ -34,7 +34,7 @@ public class HuntState : IEnemyState {
 
         if(enemy.inMeleeRange)
         {
-            enemy.ChangeState(new MeleeState());
+            //enemy.ChangeState(new MeleeState());
         }
     }
 

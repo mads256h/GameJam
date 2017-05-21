@@ -30,9 +30,9 @@ public class CameraScript : MonoBehaviour {
 
         if(shake)
         {
-            offset = new Vector3(Random.Range(1, 4), 0, Random.Range(1, 4));
+            offset = new Vector3(Random.Range(1, 10), 0, Random.Range(1, 10));
 
-            offset += t;
+             t += offset;
         }
 
         camera.transform.position = Vector3.Lerp(camera.transform.position,t, lerpSpeed * Time.deltaTime);
