@@ -47,6 +47,8 @@ public class BombObject : MonoBehaviour
 
     void Explode()
     {
+        GameObject.Find("cam1").GetComponentInChildren<Screenshake>().Shake(20);
+        GameObject.Find("cam2").GetComponentInChildren<Screenshake>().Shake(20);
         capsuleCollider.enabled = true;
         toRemove = true;
         timer = 0f;

@@ -72,6 +72,8 @@ public class WeaponScript : MonoBehaviour
         }
         if (shoot && timer >= Cooldown && PlayerID == Consts.PlayerID.One)
         {
+            if(Player.Player1Type != Consts.PlayerType.Bomber)
+            GameObject.Find("cam1").GetComponentInChildren<Screenshake>().Shake();
             switch (Player.Player1Type)
             {
                 case Consts.PlayerType.LongShot:
@@ -104,6 +106,8 @@ public class WeaponScript : MonoBehaviour
 
         if (shoot && timer >= Cooldown && PlayerID == Consts.PlayerID.Two)
         {
+            if (Player.Player2Type != Consts.PlayerType.Bomber)
+                GameObject.Find("cam2").GetComponentInChildren<Screenshake>().Shake();
             switch (Player.Player2Type)
             {
                 case Consts.PlayerType.LongShot:

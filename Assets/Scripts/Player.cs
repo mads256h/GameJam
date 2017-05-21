@@ -66,8 +66,15 @@ public class Player : MonoBehaviour {
 
     public void TakeDamage (float damageToLose) { //Mist liv
         Health -= damageToLose;
-
-	}
+        if(PlayerID == Consts.PlayerID.One)
+        {
+            GameObject.Find("cam1").GetComponentInChildren<BloodEffect>().BloodAndShake();
+        }
+        if (PlayerID == Consts.PlayerID.Two)
+        {
+            GameObject.Find("cam2").GetComponentInChildren<BloodEffect>().BloodAndShake();
+        }
+    }
 
     public void GainHeath (float healthToGain) //Få liv
     {
