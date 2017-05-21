@@ -29,7 +29,7 @@ public class Enemy : Character {
 
     private float damageTimer, damageCooldown = 0.25f;
 
-    public string boss = "";
+    public string type = "";
 
 	[HideInInspector]
     public UnityEngine.AI.NavMeshAgent agent;
@@ -88,9 +88,15 @@ public class Enemy : Character {
 
     void Update()
     {
+        float disToPlayer1 = 0;
+        float disToPlayer2 = 0;
 
-        float disToPlayer1 = Vector3.Distance(transform.position, players[0].transform.position);
-        float disToPlayer2 = Vector3.Distance(transform.position, players[1].transform.position);
+        if (players[0] != null && players[1] != null)
+        {
+             disToPlayer1 = Vector3.Distance(transform.position, players[0].transform.position);
+             disToPlayer2 = Vector3.Distance(transform.position, players[1].transform.position);
+        }
+        
 
 
         if (disToPlayer1 > disToPlayer2)
@@ -188,43 +194,16 @@ public class Enemy : Character {
 
             if (IsDead)
             {
+                canMove = false;
+                //Anim.SetTrigger("death");
 
-                if(boss == "slimey")
-                {
-
-                    if(transform.localScale.x <= 0.125f)
-                    {
-
-                        for(int i = 0; i < 3; i++)
-                        {
-                            GameObject g = Resources.Load("enemy") as GameObject;
-                            Instantiate(g, transform.position, Quaternion.identity);
-                        }
-
-                        Destroy(gameObject);
-                    }
-                    else
-                    {
-                        health = 100;
-                        transform.localScale = transform.localScale / 2;
-
-                        Instantiate(gameObject, transform.position, Quaternion.identity);
-                    }
-
-                }
-                else
-                {
-                    canMove = false;
-                    //Anim.SetTrigger("death");
-
-
-                    WaveSystem.currentEnemies--;
-                    Destroy(gameObject, 30);
-                    GetComponentInChildren<SpriteRenderer>().color = new Color32(139, 61, 61, 255);
-                    GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
-                    agent.enabled = false;
-                    Destroy(GetComponent<AudioSource>());
-                }
+                WaveSystem.currentEnemies--;
+                Destroy(gameObject, 30);
+                GetComponentInChildren<SpriteRenderer>().color = new Color32(139, 61, 61, 255);
+                GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
+                agent.enabled = false;
+                Destroy(GetComponent<AudioSource>());
+                
             }
             else
             {
