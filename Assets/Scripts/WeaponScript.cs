@@ -91,7 +91,7 @@ public class WeaponScript : MonoBehaviour
                 case Consts.PlayerType.Mage:
                     Vector3 magerotation = player.rotation.eulerAngles;
                     magerotation.y -= 90f;
-                    Bullet b = Instantiate(bullet, player.position, Quaternion.Euler(magerotation));
+                    Bullet b = Instantiate(bullet, new Vector3(player.position.x, 11, player.position.z), Quaternion.Euler(magerotation));
                     AudioManager.PlaySound(transform.position, clip);
                     break;
             }
