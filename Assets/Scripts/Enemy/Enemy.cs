@@ -70,7 +70,13 @@ public class Enemy : Character {
 
     public override void Start()
     {
+
+
+
+
         base.Start();
+
+        StartCoroutine(TakeDamage(10000));
 
         if(players == null || players.Length != 2)
         {
@@ -196,6 +202,17 @@ public class Enemy : Character {
             {
                 canMove = false;
                 //Anim.SetTrigger("death");
+
+                if(type == "slime")
+                {
+                    GameObject g = Resources.Load(@"ParticleSystems\SlimeParticleSystem") as GameObject;
+                    Instantiate(g, transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    GameObject g = Resources.Load(@"ParticleSystems\BloodParticleSystem") as GameObject;
+                    Instantiate(g, transform.position, Quaternion.identity);
+                }
 
                 WaveSystem.currentEnemies--;
                 Destroy(gameObject, 30);
