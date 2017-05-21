@@ -37,6 +37,10 @@ public class WeaponScript : MonoBehaviour
 
     public AudioClip clip;
 
+    public GameObject ult;
+
+    private float ult_timer, ult_cooldown;
+
     void Start()
     {
         player = GetComponent<Transform>();
@@ -118,6 +122,23 @@ public class WeaponScript : MonoBehaviour
                     break;
             }
             timer = 0f;
+        }
+
+        if(ult_timer >= ult_cooldown)
+        {
+            if(Input.GetButtonDown("Fire1"))
+            {
+                ult_timer = 0;
+
+                Instantiate(ult, transform.position, ult.transform.rotation);
+            }
+            else if(Input.GetButtonDown("Fire2"))
+            {
+                ult_timer = 0;
+
+                Instantiate(ult, transform.position, ult.transform.rotation);
+            }
+            
         }
     }
 
