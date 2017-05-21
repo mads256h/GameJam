@@ -35,10 +35,12 @@ public class WeaponScript : MonoBehaviour
 
     private float timer = 0f;
 
+    public AudioClip clip;
+
     void Start()
     {
         player = GetComponent<Transform>();
-        playerScript = GetComponent<Player>();
+
 
     }
 
@@ -67,6 +69,7 @@ public class WeaponScript : MonoBehaviour
                 case Consts.PlayerType.LongShot:
                     muzzleFlash.Play("MuzzleFlash");
                     Vector3 rotation = player.rotation.eulerAngles;
+                    AudioManager.PlaySound(transform.position, clip);
                     rotation.y -= 90f;
                     Instantiate(bullet, player.position, Quaternion.Euler(rotation));
                     AudioManager.PlaySound(transform.position, bulletSound, bulletVolume);
@@ -83,6 +86,7 @@ public class WeaponScript : MonoBehaviour
                     Vector3 magerotation = player.rotation.eulerAngles;
                     magerotation.y -= 90f;
                     Bullet b = Instantiate(bullet, player.position, Quaternion.Euler(magerotation));
+                    AudioManager.PlaySound(transform.position, clip);
                     break;
             }
             timer = 0f;

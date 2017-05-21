@@ -23,6 +23,8 @@ public class BombObject : MonoBehaviour
 
     private bool toRemove = false;
 
+    public AudioClip explosion;
+
     // Use this for initialization
     void Start()
     {
@@ -47,6 +49,9 @@ public class BombObject : MonoBehaviour
         toRemove = true;
         timer = 0f;
         ((GameObject)Instantiate(particleSystem, transform.position, Quaternion.Euler(ParticleSystemRotation))).transform.localScale = new Vector3(1*32,1*32,1*32);
+        AudioManager.PlaySound(transform.position, explosion);
+
+
     }
 
     private void OnTriggerEnter(Collider other)
