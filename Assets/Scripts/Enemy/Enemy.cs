@@ -88,9 +88,15 @@ public class Enemy : Character {
 
     void Update()
     {
+        float disToPlayer1 = 0;
+        float disToPlayer2 = 0;
 
-        float disToPlayer1 = Vector3.Distance(transform.position, players[0].transform.position);
-        float disToPlayer2 = Vector3.Distance(transform.position, players[1].transform.position);
+        if (players[0] != null && players[1] != null)
+        {
+             disToPlayer1 = Vector3.Distance(transform.position, players[0].transform.position);
+             disToPlayer2 = Vector3.Distance(transform.position, players[1].transform.position);
+        }
+        
 
 
         if (disToPlayer1 > disToPlayer2)
