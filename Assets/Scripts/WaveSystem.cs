@@ -16,12 +16,9 @@ public class WaveSystem : MonoBehaviour {
 
     public GameObject[] diff_enemies;
 
-    [Header("skriv hvilken wave bossen spawner i. bossen blive fundet efter indexet i denne array.")]
-    public int[] boss;
-
     private Transform[] spawningPos;
 
-    private int waveIndex = -1, bossIndex = -1;
+    private int waveIndex = -1;
 
     public static int currentEnemies = 0;
 
@@ -67,8 +64,21 @@ public class WaveSystem : MonoBehaviour {
 
         for (int i = 0; i < enemies[waveIndex]; i++)
         {
-            GameObject enemy = diff_enemies[Random.Range(0, diff_enemies.Length - 1)];
-            Instantiate(enemy, spawningPos[Random.Range(0, spawningPos.Length - 1)].position, Quaternion.identity);
+
+            int diff = Random.Range(0, 100);
+
+            if(diff < 70)
+            {
+                GameObject e = diff_enemies[1];
+                Instantiate(e, spawningPos[Random.Range(0, spawningPos.Length - 1)].position, Quaternion.identity);
+            }
+            else
+            {
+                GameObject enemy = diff_enemies[Random.Range(0, diff_enemies.Length - 1)];
+                Instantiate(enemy, spawningPos[Random.Range(0, spawningPos.Length - 1)].position, Quaternion.identity);
+            }
+
+            
         }
 
         GameObject[] p = GameObject.FindGameObjectsWithTag("Player");

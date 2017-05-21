@@ -37,6 +37,8 @@ public class Enemy : Character {
     [HideInInspector]
     public bool isAttacking, canMove = true;
 
+    public float StunnedFor;
+
     public void setAttackingToFalse()
     {
         isAttacking = false;
@@ -88,6 +90,14 @@ public class Enemy : Character {
 
     void Update()
     {
+
+        if (StunnedFor > 0)
+        {
+            StunnedFor -= Time.deltaTime;
+            return;
+        }
+            
+
         float disToPlayer1 = 0;
         float disToPlayer2 = 0;
 
