@@ -18,6 +18,12 @@ public class Bullet : MonoBehaviour
 
     public int damage = 5;
 
+    public bool IsUlt = false;
+
+    public GameObject Ult;
+
+    public Vector3 UltRotation = new Vector3(90f, 0, 0);
+
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
@@ -43,6 +49,11 @@ public class Bullet : MonoBehaviour
             Enemy e = c.GetComponent<Enemy>();
 
             e.StartCoroutine(e.TakeDamage(damage));
+
+            if (IsUlt)
+            {
+                Instantiate(Ult, transform.position, Quaternion.Euler(UltRotation));
+            }
 
             if(ps != null)
             {

@@ -132,7 +132,24 @@ public class WeaponScript : MonoBehaviour
             {
                 ult_timer = 0;
 
-                Instantiate(ult, transform.position, ult.transform.rotation);
+                switch (Player.Player1Type)
+                {
+                    case Consts.PlayerType.LongShot:
+                        muzzleFlash.Play("MuzzleFlash");
+                        Vector3 rotation = player.rotation.eulerAngles;
+                        rotation.y -= 90f;
+                        Instantiate(bullet, player.position, Quaternion.Euler(rotation)).GetComponent<Bullet>().IsUlt = true;
+                        AudioManager.PlaySound(transform.position, bulletSound, bulletVolume);
+                        break;
+                    case Consts.PlayerType.Bomber:
+                        break;
+                    case Consts.PlayerType.Knight:
+                        break;
+                    case Consts.PlayerType.Mage:
+                        break;
+                    default:
+                        break;
+                }
             }
             else if(Input.GetButtonDown("JUlt2"))
             {
@@ -142,6 +159,8 @@ public class WeaponScript : MonoBehaviour
             }
             
         }
+
+
     }
 
 
