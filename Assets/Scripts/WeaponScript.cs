@@ -41,7 +41,7 @@ public class WeaponScript : MonoBehaviour
     {
         player = GetComponent<Transform>();
 
-
+        playerScript = GetComponent<Player>();
     }
 
     void Update()

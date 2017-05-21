@@ -5,12 +5,21 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+    public float Score;
+    float LerpedScore;
+    float lerpedScore;
+    public Text ScoreText;
     public HeroClass[] heros;
 
     public GameObject cam1, cam2;
 
     public Image healthbar1, healthbar2;
 
+    private void Update()
+    {
+        LerpedScore = Mathf.Lerp(LerpedScore, Score, Time.deltaTime * 8);
+        ScoreText.text = "Score: " + LerpedScore.ToString("F0");
+    }
 
     void Start()
     {

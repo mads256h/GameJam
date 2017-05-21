@@ -12,7 +12,10 @@ public class Player : MonoBehaviour {
     public int HeroType; //Hvilken type hero det er Sniper = 1 Bombman = 2 Melee dude = 3 Mage = 4
 
 
-    float health;
+
+    public float health;
+
+
 
     public float Health
     {
@@ -42,6 +45,7 @@ public class Player : MonoBehaviour {
     public Image HealthBar; //Healthbar. Skal være sat til filled horizontal.
 
     public bool isDead;
+
 
     void Updatelifebar()
     {
