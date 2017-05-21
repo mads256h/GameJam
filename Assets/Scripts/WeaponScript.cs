@@ -45,6 +45,8 @@ public class WeaponScript : MonoBehaviour
     {
         player = GetComponent<Transform>();
 
+        ult_timer = ult_cooldown;
+
 
     }
 
