@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class WaveSystem : MonoBehaviour {
 
-    public Text waveText;
-
     public int wave;
 
     public Text infoText;
@@ -51,7 +49,6 @@ public class WaveSystem : MonoBehaviour {
     IEnumerator SpawnWave ()
     {
         wave = wave + 1;
-        waveText.text = "Wave: " + wave.ToString();
 
         midWave = true;
         for(int i = 5; i > -1; i--)

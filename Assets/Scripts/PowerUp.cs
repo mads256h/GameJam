@@ -15,6 +15,9 @@ public class PowerUp : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        Destroy(gameObject, 10);
+
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         int rnd = Random.Range(0, 4);
