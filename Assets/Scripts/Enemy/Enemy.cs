@@ -199,11 +199,13 @@ public class Enemy : Character {
 
                 if(type == "slime")
                 {
+                    GameObject.Find("Game manager").GetComponent<GameManager>().Score += 100;
                     GameObject g = Resources.Load(@"ParticleSystems\SlimeParticleSystem") as GameObject;
                     Instantiate(g, transform.position, Quaternion.identity);
                 }
                 else
                 {
+                    GameObject.Find("Game manager").GetComponent<GameManager>().Score += 1000;
                     GameObject g = Resources.Load(@"ParticleSystems\BloodParticleSystem") as GameObject;
                     Instantiate(g, transform.position, Quaternion.identity);
                 }
@@ -211,6 +213,30 @@ public class Enemy : Character {
                 WaveSystem.currentEnemies--;
                 Destroy(gameObject, 30);
                 GetComponentInChildren<SpriteRenderer>().color = new Color32(139, 61, 61, 255);
+                if(GetComponent<BoxCollider>() != null)
+                {
+                    Destroy(GetComponent<BoxCollider>());
+                    if (GetComponent<BoxCollider>() != null)
+                    {
+                        Destroy(GetComponent<BoxCollider>());
+                        if (GetComponent<BoxCollider>() != null)
+                        {
+                            Destroy(GetComponent<BoxCollider>());
+                        }
+                    }
+                }
+                if (GetComponent<CapsuleCollider>() != null)
+                {
+                    Destroy(GetComponent<CapsuleCollider>());
+                    if (GetComponent<CapsuleCollider>() != null)
+                    {
+                        Destroy(GetComponent<CapsuleCollider>());
+                        if (GetComponent<CapsuleCollider>() != null)
+                        {
+                            Destroy(GetComponent<CapsuleCollider>());
+                        }
+                    }
+                }
                 GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
                 agent.enabled = false;
                 Destroy(GetComponent<AudioSource>());
