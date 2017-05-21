@@ -11,7 +11,7 @@ public class WeaponScript : MonoBehaviour
 
     public AudioClip bulletSound;
 
-    public float volume = 0.75f;
+    public float bulletVolume = 0.75f;
 
     public GameObject Bomb;
 
@@ -21,6 +21,9 @@ public class WeaponScript : MonoBehaviour
 
     public int meeleDamage = 100;
 
+    public AudioClip meleeSound;
+
+    public float meleeVolume = 0.75f;
 
     public Animator muzzleFlash;
 
@@ -66,15 +69,15 @@ public class WeaponScript : MonoBehaviour
                     Vector3 rotation = player.rotation.eulerAngles;
                     rotation.y -= 90f;
                     Instantiate(bullet, player.position, Quaternion.Euler(rotation));
-                    AudioManager.PlaySound(transform.position, bulletSound, volume);
+                    AudioManager.PlaySound(transform.position, bulletSound, bulletVolume);
                     break;
                 case Consts.PlayerType.Bomber:
                     GameObject g = (GameObject)Instantiate(Bomb, player.position, player.rotation);
                     g.GetComponent<Rigidbody>().AddRelativeForce(BombStrength, ForceMode.Impulse);
                     break;
                 case Consts.PlayerType.Knight:
-                    Debug.Log("ljashdkljashdk");
                     meleeRange.enabled = true;
+                    AudioManager.PlaySound(transform.position, meleeSound, meleeVolume);
                     break;
                 case Consts.PlayerType.Mage:
                     Vector3 magerotation = player.rotation.eulerAngles;
@@ -94,7 +97,7 @@ public class WeaponScript : MonoBehaviour
                     Vector3 rotation = player.rotation.eulerAngles;
                     rotation.y -= 90f;
                     Instantiate(bullet, player.position, Quaternion.Euler(rotation));
-                    AudioManager.PlaySound(transform.position, bulletSound, volume);
+                    AudioManager.PlaySound(transform.position, bulletSound, bulletVolume);
                     break;
                 case Consts.PlayerType.Bomber:
                     GameObject g = (GameObject)Instantiate(Bomb, player.position, player.rotation);
@@ -102,6 +105,7 @@ public class WeaponScript : MonoBehaviour
                     break;
                 case Consts.PlayerType.Knight:
                     meleeRange.enabled = true;
+                    AudioManager.PlaySound(transform.position, meleeSound, meleeVolume);
                     break;
                 case Consts.PlayerType.Mage:
                     Vector3 magerotation = player.rotation.eulerAngles;
