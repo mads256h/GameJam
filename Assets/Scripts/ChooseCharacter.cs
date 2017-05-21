@@ -39,7 +39,7 @@ public class ChooseCharacter : MonoBehaviour
 
     public void PressLongShot()
     {
-        ButtonLongShot.enabled = false;
+        ButtonLongShot.interactable = false;
         if (PlayerID == Consts.PlayerID.One)
         {
             Player2();
@@ -55,7 +55,7 @@ public class ChooseCharacter : MonoBehaviour
 
     public void PressBomber()
     {
-        ButtonBomber.enabled = false;
+        ButtonBomber.interactable = false;
         if (PlayerID == Consts.PlayerID.One)
         {
             Player2();
@@ -70,7 +70,7 @@ public class ChooseCharacter : MonoBehaviour
 
     public void PressKnight()
     {
-        ButtonKnight.enabled = false;
+        ButtonKnight.interactable = false;
         if (PlayerID == Consts.PlayerID.One)
         {
             Player2();
@@ -85,7 +85,7 @@ public class ChooseCharacter : MonoBehaviour
 
     public void PressMage()
     {
-        ButtonMage.enabled = false;
+        ButtonMage.interactable = false;
         if (PlayerID == Consts.PlayerID.One)
         {
             Player2();
