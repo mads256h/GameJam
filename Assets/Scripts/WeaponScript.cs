@@ -128,7 +128,7 @@ public class WeaponScript : MonoBehaviour
 
         if(ult_timer >= ult_cooldown)
         {
-            if(Input.GetButtonDown("JUlt1"))
+            if(Input.GetButtonDown("JUlt1") && playerScript.PlayerID == Consts.PlayerID.One)
             {
                 ult_timer = 0;
 
@@ -151,7 +151,7 @@ public class WeaponScript : MonoBehaviour
                         break;
                 }
             }
-            else if(Input.GetButtonDown("JUlt2"))
+            else if(Input.GetButtonDown("JUlt2") && playerScript.PlayerID == Consts.PlayerID.Two )
             {
                 ult_timer = 0;
 
