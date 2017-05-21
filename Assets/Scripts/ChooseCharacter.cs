@@ -34,7 +34,6 @@ public class ChooseCharacter : MonoBehaviour
         InputModule.verticalAxis = "Vertical2";
         InputModule.submitButton = "Submit2";
         PlayerID = Consts.PlayerID.Two;
-
     }
 
     public void PressLongShot()
@@ -49,6 +48,7 @@ public class ChooseCharacter : MonoBehaviour
         else
         {
             Player.Player2Type = Consts.PlayerType.LongShot;
+            Application.LoadLevel(1);
         }
 
     }
@@ -61,10 +61,12 @@ public class ChooseCharacter : MonoBehaviour
             Player2();
             Player.Player1Type = Consts.PlayerType.Bomber;
             ButtonLongShot.Select();
+            
         }
         else
         {
             Player.Player2Type = Consts.PlayerType.Bomber;
+            Application.LoadLevel(1);
         }
     }
 
@@ -80,6 +82,7 @@ public class ChooseCharacter : MonoBehaviour
         else
         {
             Player.Player2Type = Consts.PlayerType.Knight;
+            Application.LoadLevel(1);
         }
     }
 
@@ -95,6 +98,7 @@ public class ChooseCharacter : MonoBehaviour
         else
         {
             Player.Player2Type = Consts.PlayerType.Mage;
+            Application.LoadLevel(1);
         }
     }
 }

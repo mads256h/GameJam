@@ -18,14 +18,16 @@ public class GameManager : MonoBehaviour {
         {
             if(Player.Player1Type == heros[i].type)
             {
-                GameObject g = (GameObject) Instantiate(heros[i].obj, new Vector3(276.0555f,0, 230.8f), Quaternion.identity);
+                GameObject g = (GameObject) Instantiate(heros[i].obj, new Vector3(276.0555f,0, 230.8f), heros[i].obj.transform.rotation);
                 g.GetComponent<CameraScript>().camera = cam1;
                 g.GetComponent<Player>().HealthBar = healthbar1;
             }
 
             if (Player.Player2Type == heros[i].type)
             {
-                GameObject g = (GameObject)Instantiate(heros[i].obj, new Vector3(276.0555f, 0, 297.2f), Quaternion.identity);
+
+
+                GameObject g = (GameObject)Instantiate(heros[i].obj, new Vector3(276.0555f, 0, 297.2f), heros[i].obj.transform.rotation);
 
                 g.GetComponent<Movement>().playerID = Consts.PlayerID.Two;
                 g.GetComponent<PlayerRotation>().PlayerID = Consts.PlayerID.Two;
