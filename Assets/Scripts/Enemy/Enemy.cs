@@ -216,26 +216,12 @@ public class Enemy : Character {
                 if(GetComponent<BoxCollider>() != null)
                 {
                     Destroy(GetComponent<BoxCollider>());
-                    if (GetComponent<BoxCollider>() != null)
-                    {
-                        Destroy(GetComponent<BoxCollider>());
-                        if (GetComponent<BoxCollider>() != null)
-                        {
-                            Destroy(GetComponent<BoxCollider>());
-                        }
-                    }
+                    transform.tag = "Untagged";
                 }
                 if (GetComponent<CapsuleCollider>() != null)
                 {
                     Destroy(GetComponent<CapsuleCollider>());
-                    if (GetComponent<CapsuleCollider>() != null)
-                    {
-                        Destroy(GetComponent<CapsuleCollider>());
-                        if (GetComponent<CapsuleCollider>() != null)
-                        {
-                            Destroy(GetComponent<CapsuleCollider>());
-                        }
-                    }
+                    transform.tag = "Untagged";
                 }
                 GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
                 agent.enabled = false;
