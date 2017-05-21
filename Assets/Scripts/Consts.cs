@@ -24,4 +24,12 @@ public class Consts : MonoBehaviour
         Knight,
         Mage,
     }
+
+    public enum PowerUpType
+    {
+        Health,
+        Oneshot,
+        Firerate,
+        Blast,
+    }
 }
