@@ -6,7 +6,7 @@ public class ParticleSystemObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Start () {
-        Destroy(gameObject, gameObject.GetComponent<ParticleSystem>().duration);
+        Destroy(gameObject, gameObject.GetComponent<ParticleSystem>().main.duration);
 		
 	}
 }
