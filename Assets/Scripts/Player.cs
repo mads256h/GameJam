@@ -11,7 +11,11 @@ public class Player : MonoBehaviour {
     public Consts.PlayerID PlayerID; //Om det er spiller 1 eller 2
     public int HeroType; //Hvilken type hero det er Sniper = 1 Bombman = 2 Melee dude = 3 Mage = 4
 
+    float powerupTimer, oldFireRate;
 
+    Consts.PowerUpType put;
+
+    bool havePowerup;
 
     public float health;
 
@@ -26,8 +30,6 @@ public class Player : MonoBehaviour {
         set
         {
             health = value;
-
-            Updatelifebar();
 
             isDead = health < 0 ? true : false;
 
@@ -57,11 +59,6 @@ public class Player : MonoBehaviour {
     public bool isDead;
 
 
-    void Updatelifebar()
-    {
-        
-    }
-
     public void AddScore (float scoreToAdd) //Tilføj point
     {
         Score += scoreToAdd; 
@@ -78,5 +75,71 @@ public class Player : MonoBehaviour {
         Health += healthToGain;
 
 
+    }
+
+    void OnTriggerEnter(Collider o)
+    {
+        if(o.tag == "powerup" && !havePowerup)
+        {
+
+            put = o.GetComponent<PowerUp>().PowerUpType;
+
+            if (o.GetComponent<PowerUp>().PowerUpType == Consts.PowerUpType.Blast)
+            {
+                GameObject g = Resources.Load("bomb") as GameObject;
+            }
+
+            if (o.GetComponent<PowerUp>().PowerUpType == Consts.PowerUpType.Firerate)
+            {
+                oldFireRate = GetComponent<WeaponScript>().Cooldown;
+                havePowerup = true;
+                GetComponent<WeaponScript>().Cooldown = 0.1f;
+                StartCoroutine(DisableFirerate());
+            }
+
+            if (o.GetComponent<PowerUp>().PowerUpType == Consts.PowerUpType.Health)
+            {
+                GainHeath(100);
+            }
+
+            if (o.GetComponent<PowerUp>().PowerUpType == Consts.PowerUpType.Oneshot)
+            {
+                havePowerup = true;
+                GetComponent<WeaponScript>().damange *= 100;
+                StartCoroutine(DisableOneshot());
+            }
+
+            
+            
+            Destroy(o.gameObject);
+        }
+    }
+
+    IEnumerator DisableOneshot()
+    {
+        Debug.Log("asjkldasjd");
+        yield return new WaitForSeconds(8);
+        Debug.Log("ajkkkkk");
+
+        GetComponent<WeaponScript>().damange /= 100;
+
+        havePowerup = false;
+
+        yield return new WaitForSeconds(8);
+        Debug.Log("yyyyyyyyyyyyyyyyyyyyy");
+
+    }
+
+    IEnumerator DisableFirerate()
+    {
+        Debug.Log("jjjjjjjjjjjjjjjjjjjjjjjjjj");
+        yield return new WaitForSeconds(8);
+        Debug.Log("hhhhhhhhhhhhhhhhhhhhhhhhh");
+        GetComponent<WeaponScript>().Cooldown = oldFireRate;
+
+        havePowerup = false;
+
+        yield return new WaitForSeconds(8);
+        Debug.Log("ååååååååååååååååå");
     }
 }

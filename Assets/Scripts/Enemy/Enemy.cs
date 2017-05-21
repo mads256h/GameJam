@@ -41,6 +41,8 @@ public class Enemy : Character {
 
     public AudioClip hit;
 
+    public GameObject powerup;
+
     public void setAttackingToFalse()
     {
         isAttacking = false;
@@ -211,6 +213,14 @@ public class Enemy : Character {
                 canMove = false;
                 //Anim.SetTrigger("death");
 
+                int chance = UnityEngine.Random.Range(0, 100);
+
+                if(chance >= 90)
+                {
+                    Instantiate(powerup, transform.position, powerup.transform.rotation);
+                }
+
+
                 if(type == "slime")
                 {
                     GameObject.Find("Game manager").GetComponent<GameManager>().Score += 100;
@@ -219,7 +229,7 @@ public class Enemy : Character {
                 }
                 else
                 {
-                    GameObject.Find("Game manager").GetComponent<GameManager>().Score += 1000;
+                    GameObject.Find("Game manager").GetComponent<GameManager>().Score += 500;
                     GameObject g = Resources.Load(@"ParticleSystems\BloodParticleSystem") as GameObject;
                     Instantiate(g, transform.position, Quaternion.identity);
                 }
