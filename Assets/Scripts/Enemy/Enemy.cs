@@ -70,13 +70,7 @@ public class Enemy : Character {
 
     public override void Start()
     {
-
-
-
-
         base.Start();
-
-        StartCoroutine(TakeDamage(10000));
 
         if(players == null || players.Length != 2)
         {
