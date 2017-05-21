@@ -17,6 +17,10 @@ public class UltShock : MonoBehaviour
 
     public Vector3 ParticleSystemRotation = Vector3.zero;
 
+    public AudioClip ShockSound;
+
+    public float Volume = 0.75f;
+
     private CapsuleCollider capsuleCollider;
 
 
@@ -35,6 +39,7 @@ public class UltShock : MonoBehaviour
     {
         capsuleCollider.enabled = true;
         ((GameObject)Instantiate(particleSystem, transform.position, Quaternion.Euler(ParticleSystemRotation))).transform.localScale = new Vector3(1 * 32, 1 * 32, 1 * 32);
+        AudioManager.PlaySound(transform.position, ShockSound, Volume);
     }
 
     private void OnTriggerEnter(Collider other)
