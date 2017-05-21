@@ -34,12 +34,11 @@ public class ChooseCharacter : MonoBehaviour
         InputModule.verticalAxis = "Vertical2";
         InputModule.submitButton = "Submit2";
         PlayerID = Consts.PlayerID.Two;
-
     }
 
     public void PressLongShot()
     {
-        ButtonLongShot.enabled = false;
+        ButtonLongShot.interactable = false;
         if (PlayerID == Consts.PlayerID.One)
         {
             Player2();
@@ -49,28 +48,31 @@ public class ChooseCharacter : MonoBehaviour
         else
         {
             Player.Player2Type = Consts.PlayerType.LongShot;
+            Application.LoadLevel(1);
         }
 
     }
 
     public void PressBomber()
     {
-        ButtonBomber.enabled = false;
+        ButtonBomber.interactable = false;
         if (PlayerID == Consts.PlayerID.One)
         {
             Player2();
             Player.Player1Type = Consts.PlayerType.Bomber;
             ButtonLongShot.Select();
+            
         }
         else
         {
             Player.Player2Type = Consts.PlayerType.Bomber;
+            Application.LoadLevel(1);
         }
     }
 
     public void PressKnight()
     {
-        ButtonKnight.enabled = false;
+        ButtonKnight.interactable = false;
         if (PlayerID == Consts.PlayerID.One)
         {
             Player2();
@@ -80,12 +82,13 @@ public class ChooseCharacter : MonoBehaviour
         else
         {
             Player.Player2Type = Consts.PlayerType.Knight;
+            Application.LoadLevel(1);
         }
     }
 
     public void PressMage()
     {
-        ButtonMage.enabled = false;
+        ButtonMage.interactable = false;
         if (PlayerID == Consts.PlayerID.One)
         {
             Player2();
@@ -95,6 +98,7 @@ public class ChooseCharacter : MonoBehaviour
         else
         {
             Player.Player2Type = Consts.PlayerType.Mage;
+            Application.LoadLevel(1);
         }
     }
 }
