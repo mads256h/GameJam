@@ -39,6 +39,8 @@ public class Enemy : Character {
 
     public float StunnedFor;
 
+    public AudioClip hit;
+
     public void setAttackingToFalse()
     {
         isAttacking = false;
@@ -201,6 +203,8 @@ public class Enemy : Character {
         if(!IsDead)
         {
             health -= amount;
+
+            AudioManager.PlaySound(transform.position, hit);
 
             if (IsDead)
             {

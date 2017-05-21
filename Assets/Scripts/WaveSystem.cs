@@ -34,6 +34,10 @@ public class WaveSystem : MonoBehaviour {
         {
             spawningPos[i] = g[i].transform;
         }
+
+        midWave = false;
+
+        currentEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
     }
 	
 	void Update ()
@@ -50,7 +54,7 @@ public class WaveSystem : MonoBehaviour {
         waveText.text = "Wave: " + wave.ToString();
 
         midWave = true;
-        for(int i = 10; i > -1; i--)
+        for(int i = 5; i > -1; i--)
         {
             yield return new WaitForSeconds(1);
             infoText.text = "Next wave: " + i + " sec!";
@@ -67,7 +71,7 @@ public class WaveSystem : MonoBehaviour {
 
             int diff = Random.Range(0, 100);
 
-            if(diff < 70)
+            if(diff < 80)
             {
                 GameObject e = diff_enemies[1];
                 Instantiate(e, spawningPos[Random.Range(0, spawningPos.Length - 1)].position, Quaternion.identity);

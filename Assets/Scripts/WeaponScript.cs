@@ -39,7 +39,7 @@ public class WeaponScript : MonoBehaviour
 
     public GameObject ult;
 
-    private float ult_timer, ult_cooldown;
+    private float ult_timer, ult_cooldown = 15;
 
     void Start()
     {
@@ -126,6 +126,7 @@ public class WeaponScript : MonoBehaviour
             timer = 0f;
         }
 
+        ult_timer += Time.deltaTime;
         if(ult_timer >= ult_cooldown)
         {
             if(Input.GetButtonDown("JUlt1") && playerScript.PlayerID == Consts.PlayerID.One)
@@ -149,7 +150,7 @@ public class WeaponScript : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            other.gameObject.GetComponent<Enemy>().StartCoroutine(other.gameObject.GetComponent<Enemy>().TakeDamage(meeleDamage));
+            //other.gameObject.GetComponent<Enemy>().StartCoroutine(other.gameObject.GetComponent<Enemy>().TakeDamage(meeleDamage));
 
             if(meleeRange != null)
                 meleeRange.enabled = false;
