@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour {
 
     private Player player;
 
+    public AudioSource footstep;
+
     void Start()
     {
         player = GetComponent<Player>();
@@ -36,6 +38,14 @@ public class Movement : MonoBehaviour {
         }
 
         input.Normalize();
+
+        if (input == Vector3.zero)
+            footstep.Stop();
+        else
+        {
+            if (!footstep.isPlaying)
+                footstep.Play();
+        }
 
         transform.position += (input * speed * Time.deltaTime);
 	}

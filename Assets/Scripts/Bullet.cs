@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public GameObject ps;
 
     public float Speed = 10f;
 
@@ -16,6 +17,12 @@ public class Bullet : MonoBehaviour
     private BoxCollider boxCollider;
 
     public int damage = 5;
+
+    public bool IsUlt = false;
+
+    public GameObject Ult;
+
+    public Vector3 UltRotation = new Vector3(90f, 0, 0);
 
     void Start()
     {
@@ -43,7 +50,18 @@ public class Bullet : MonoBehaviour
 
             e.StartCoroutine(e.TakeDamage(damage));
 
-            Destroy(gameObject);
+            if (IsUlt)
+            {
+                Instantiate(Ult, transform.position, Quaternion.Euler(UltRotation));
+            }
+
+            if(ps != null)
+            {
+                GameObject Particles = Instantiate(ps, transform.position, ps.transform.rotation);
+                Destroy(Particles, 2);
+                Destroy(gameObject);
+            }
+            
         }
     }
 }

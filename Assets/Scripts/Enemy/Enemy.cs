@@ -37,6 +37,8 @@ public class Enemy : Character {
     [HideInInspector]
     public bool isAttacking, canMove = true;
 
+    public float StunnedFor;
+
     public void setAttackingToFalse()
     {
         isAttacking = false;
@@ -88,6 +90,14 @@ public class Enemy : Character {
 
     void Update()
     {
+
+        if (StunnedFor > 0)
+        {
+            StunnedFor -= Time.deltaTime;
+            return;
+        }
+            
+
         float disToPlayer1 = 0;
         float disToPlayer2 = 0;
 
@@ -199,11 +209,13 @@ public class Enemy : Character {
 
                 if(type == "slime")
                 {
+                    GameObject.Find("Game manager").GetComponent<GameManager>().Score += 100;
                     GameObject g = Resources.Load(@"ParticleSystems\SlimeParticleSystem") as GameObject;
                     Instantiate(g, transform.position, Quaternion.identity);
                 }
                 else
                 {
+                    GameObject.Find("Game manager").GetComponent<GameManager>().Score += 1000;
                     GameObject g = Resources.Load(@"ParticleSystems\BloodParticleSystem") as GameObject;
                     Instantiate(g, transform.position, Quaternion.identity);
                 }
@@ -211,6 +223,16 @@ public class Enemy : Character {
                 WaveSystem.currentEnemies--;
                 Destroy(gameObject, 30);
                 GetComponentInChildren<SpriteRenderer>().color = new Color32(139, 61, 61, 255);
+                if(GetComponent<BoxCollider>() != null)
+                {
+                    Destroy(GetComponent<BoxCollider>());
+                    transform.tag = "Untagged";
+                }
+                if (GetComponent<CapsuleCollider>() != null)
+                {
+                    Destroy(GetComponent<CapsuleCollider>());
+                    transform.tag = "Untagged";
+                }
                 GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
                 agent.enabled = false;
                 Destroy(GetComponent<AudioSource>());

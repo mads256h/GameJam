@@ -9,6 +9,10 @@ public class WeaponScript : MonoBehaviour
 
     public Bullet bullet;
 
+    public AudioClip bulletSound;
+
+    public float bulletVolume = 0.75f;
+
     public GameObject Bomb;
 
     public Vector3 BombStrength = new Vector3(0, 0, 1f);
@@ -17,6 +21,9 @@ public class WeaponScript : MonoBehaviour
 
     public int meeleDamage = 100;
 
+    public AudioClip meleeSound;
+
+    public float meleeVolume = 0.75f;
 
     public Animator muzzleFlash;
 
@@ -28,10 +35,18 @@ public class WeaponScript : MonoBehaviour
 
     private float timer = 0f;
 
+    public AudioClip clip;
+
+    public GameObject ult;
+
+    private float ult_timer, ult_cooldown;
+
     void Start()
     {
         player = GetComponent<Transform>();
         playerScript = GetComponent<Player>();
+        ult_timer = ult_cooldown;
+
 
     }
 
@@ -60,21 +75,24 @@ public class WeaponScript : MonoBehaviour
                 case Consts.PlayerType.LongShot:
                     muzzleFlash.Play("MuzzleFlash");
                     Vector3 rotation = player.rotation.eulerAngles;
+                    AudioManager.PlaySound(transform.position, clip);
                     rotation.y -= 90f;
                     Instantiate(bullet, player.position, Quaternion.Euler(rotation));
+                    AudioManager.PlaySound(transform.position, bulletSound, bulletVolume);
                     break;
                 case Consts.PlayerType.Bomber:
                     GameObject g = (GameObject)Instantiate(Bomb, player.position, player.rotation);
                     g.GetComponent<Rigidbody>().AddRelativeForce(BombStrength, ForceMode.Impulse);
                     break;
                 case Consts.PlayerType.Knight:
-                    Debug.Log("ljashdkljashdk");
                     meleeRange.enabled = true;
+                    AudioManager.PlaySound(transform.position, meleeSound, meleeVolume);
                     break;
                 case Consts.PlayerType.Mage:
                     Vector3 magerotation = player.rotation.eulerAngles;
                     magerotation.y -= 90f;
-                    Bullet b = Instantiate(bullet, player.position, Quaternion.Euler(magerotation));
+                    Bullet b = Instantiate(bullet, new Vector3(player.position.x, 11, player.position.z), Quaternion.Euler(magerotation));
+                    AudioManager.PlaySound(transform.position, clip);
                     break;
             }
             timer = 0f;
@@ -89,6 +107,7 @@ public class WeaponScript : MonoBehaviour
                     Vector3 rotation = player.rotation.eulerAngles;
                     rotation.y -= 90f;
                     Instantiate(bullet, player.position, Quaternion.Euler(rotation));
+                    AudioManager.PlaySound(transform.position, bulletSound, bulletVolume);
                     break;
                 case Consts.PlayerType.Bomber:
                     GameObject g = (GameObject)Instantiate(Bomb, player.position, player.rotation);
@@ -96,6 +115,7 @@ public class WeaponScript : MonoBehaviour
                     break;
                 case Consts.PlayerType.Knight:
                     meleeRange.enabled = true;
+                    AudioManager.PlaySound(transform.position, meleeSound, meleeVolume);
                     break;
                 case Consts.PlayerType.Mage:
                     Vector3 magerotation = player.rotation.eulerAngles;
@@ -105,6 +125,42 @@ public class WeaponScript : MonoBehaviour
             }
             timer = 0f;
         }
+
+        if(ult_timer >= ult_cooldown)
+        {
+            if(Input.GetButtonDown("JUlt1") && playerScript.PlayerID == Consts.PlayerID.One)
+            {
+                ult_timer = 0;
+
+                switch (Player.Player1Type)
+                {
+                    case Consts.PlayerType.LongShot:
+                        muzzleFlash.Play("MuzzleFlash");
+                        Vector3 rotation = player.rotation.eulerAngles;
+                        rotation.y -= 90f;
+                        Instantiate(bullet, player.position, Quaternion.Euler(rotation)).GetComponent<Bullet>().IsUlt = true;
+                        AudioManager.PlaySound(transform.position, bulletSound, bulletVolume);
+                        break;
+                    case Consts.PlayerType.Bomber:
+                        break;
+                    case Consts.PlayerType.Knight:
+                        break;
+                    case Consts.PlayerType.Mage:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if(Input.GetButtonDown("JUlt2") && playerScript.PlayerID == Consts.PlayerID.Two )
+            {
+                ult_timer = 0;
+
+                Instantiate(ult, transform.position, ult.transform.rotation);
+            }
+            
+        }
+
+
     }
 
 

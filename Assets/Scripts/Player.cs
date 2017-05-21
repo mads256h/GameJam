@@ -12,7 +12,9 @@ public class Player : MonoBehaviour {
     public int HeroType; //Hvilken type hero det er Sniper = 1 Bombman = 2 Melee dude = 3 Mage = 4
 
 
-    float health;
+
+    public float health;
+
 
     public float Health
     {
@@ -34,8 +36,19 @@ public class Player : MonoBehaviour {
 
             if (health < 0)
                 health = 0;
+
+            if(GameObject.Find("PlayerOne").GetComponent<Player>().health == 0 && GameObject.Find("PlayerTwo").GetComponent<Player>().health == 0)
+            {
+                GameObject.Find("Game manager").GetComponent<GameManager>().GameOver();
+            }
         }
     }
+    private void Update()
+    {
+        HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, Health / 100, Time.deltaTime * lerpSpeed); //"Animere" healthbaren
+        transform.name = "Player" + PlayerID;
+    }
+
     public float Score;
 
     public float lerpSpeed; //Hvor hurtigt healthbar er "animeret"
@@ -43,9 +56,10 @@ public class Player : MonoBehaviour {
 
     public bool isDead;
 
+
     void Updatelifebar()
     {
-        HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, Health / 100, Time.deltaTime * lerpSpeed); //"Animere" healthbaren
+        
     }
 
     public void AddScore (float scoreToAdd) //Tilføj point
