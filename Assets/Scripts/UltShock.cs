@@ -19,9 +19,6 @@ public class UltShock : MonoBehaviour
 
     private CapsuleCollider capsuleCollider;
 
-    private float timer = 0f;
-
-    private bool toRemove = false;
 
     // Use this for initialization
     void Start()
@@ -32,19 +29,11 @@ public class UltShock : MonoBehaviour
         Explode();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        timer += Time.deltaTime;
-        if (timer >= TimeActive && toRemove)
-            Destroy(gameObject);
-    }
+
 
     void Explode()
     {
         capsuleCollider.enabled = true;
-        toRemove = true;
-        timer = 0f;
         ((GameObject)Instantiate(particleSystem, transform.position, Quaternion.Euler(ParticleSystemRotation))).transform.localScale = new Vector3(1 * 32, 1 * 32, 1 * 32);
     }
 
