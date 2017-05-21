@@ -215,7 +215,7 @@ public class Enemy : Character {
 
                 int chance = UnityEngine.Random.Range(0, 100);
 
-                if(chance >= 90)
+                if(chance >= 75 && chance < 80)
                 {
                     Instantiate(powerup, transform.position, powerup.transform.rotation);
                 }
