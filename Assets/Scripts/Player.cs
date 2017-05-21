@@ -16,7 +16,6 @@ public class Player : MonoBehaviour {
     public float health;
 
 
-
     public float Health
     {
         get
@@ -37,8 +36,19 @@ public class Player : MonoBehaviour {
 
             if (health < 0)
                 health = 0;
+
+            if(GameObject.Find("PlayerOne").GetComponent<Player>().health == 0 && GameObject.Find("PlayerTwo").GetComponent<Player>().health == 0)
+            {
+                GameObject.Find("Game manager").GetComponent<GameManager>().GameOver();
+            }
         }
     }
+    private void Update()
+    {
+        HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, Health / 100, Time.deltaTime * lerpSpeed); //"Animere" healthbaren
+        transform.name = "Player" + PlayerID;
+    }
+
     public float Score;
 
     public float lerpSpeed; //Hvor hurtigt healthbar er "animeret"
@@ -49,7 +59,7 @@ public class Player : MonoBehaviour {
 
     void Updatelifebar()
     {
-        HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, Health / 100, Time.deltaTime * lerpSpeed); //"Animere" healthbaren
+        
     }
 
     public void AddScore (float scoreToAdd) //Tilføj point
