@@ -197,6 +197,17 @@ public class Enemy : Character {
                 canMove = false;
                 //Anim.SetTrigger("death");
 
+                if(type == "slime")
+                {
+                    GameObject g = Resources.Load(@"ParticleSystems\SlimeParticleSystem") as GameObject;
+                    Instantiate(g, transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    GameObject g = Resources.Load(@"ParticleSystems\BloodParticleSystem") as GameObject;
+                    Instantiate(g, transform.position, Quaternion.identity);
+                }
+
                 WaveSystem.currentEnemies--;
                 Destroy(gameObject, 30);
                 GetComponentInChildren<SpriteRenderer>().color = new Color32(139, 61, 61, 255);
