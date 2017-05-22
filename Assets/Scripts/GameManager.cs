@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
 
     public GameObject gameOver;
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour {
         ScoreText.text = "Score: " + LerpedScore.ToString("F0");
     }
 
-    public void GameOver ()
+    public void GameOver()
     {
         gameOver.SetActive(true);
 
@@ -48,8 +49,8 @@ public class GameManager : MonoBehaviour {
         goscore.text = "Score: " + Score;
         gohighScore.text = "Highscore: " + PlayerPrefs.GetFloat("ScoreHS").ToString();
 
-        goWaves.text = "Score: " + GetComponent<WaveSystem>().wave;
-        gohighScore.text = "Highscore: " + PlayerPrefs.GetFloat("WaveHS").ToString();
+        goWaves.text = "Waves: " + GetComponent<WaveSystem>().wave;
+        goHighscoreWaves.text = "WaveHighscore: " + PlayerPrefs.GetFloat("WaveHS").ToString();
         RestartCheck();
     }
 
@@ -70,11 +71,11 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        for(int i = 0; i < heros.Length; i++)
+        for (int i = 0; i < heros.Length; i++)
         {
-            if(Player.Player1Type == heros[i].type)
+            if (Player.Player1Type == heros[i].type)
             {
-                GameObject g = (GameObject) Instantiate(heros[i].obj, new Vector3(276.0555f,0, 230.8f), heros[i].obj.transform.rotation);
+                GameObject g = (GameObject)Instantiate(heros[i].obj, new Vector3(276.0555f, 0, 230.8f), heros[i].obj.transform.rotation);
                 g.GetComponent<CameraScript>().camera = cam1;
                 g.GetComponent<Player>().HealthBar = healthbar1;
             }
@@ -96,5 +97,5 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
-    
+
 }
